@@ -1,6 +1,8 @@
-package com.example.tomatoAccounting;
+package com.example.tomatoAccounting.entity;
 
+import com.example.tomatoAccounting.entity.UserEntity;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,21 +12,15 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Tomato {
+@Builder
+public class TomatoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "STRAIN")
     private String name;
-
-    @Column(name = "KG")
     private float weight;
-
-    @Column(name = "QUANTITY")
     private float quantity;
-
-    @Column(name = "RESULT")
-    private float weightPerStrain;
+    private float result;
 }
