@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # TomatoAccounting
 ## Overview
 * [About](#general-info)
@@ -40,3 +41,8 @@ entry inside backend folder, open terminal and run command:
 
 
 
+=======
+TomatoAccounting 
+
+This is my project to accounting tomato harvest
+>>>>>>> origin/main
