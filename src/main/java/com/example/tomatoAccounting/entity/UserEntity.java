@@ -93,8 +93,5 @@ public class UserEntity implements UserDetails {
         return tomatoEntityList;
     }
 
-    public void setTomatoEntityList(List<TomatoEntity> tomatoEntityList) {
-        this.tomatoEntityList = tomatoEntityList;
-    }
 }
 

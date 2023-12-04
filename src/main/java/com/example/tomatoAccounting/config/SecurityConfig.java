@@ -32,28 +32,28 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> userRepository.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User with email not found: " + username));                            // Szukanie użytkownika po emailu
+                .orElseThrow(() -> new UsernameNotFoundException("User with email not found: " + username));
     }
 
     @Bean
     public PasswordEncoder getBcryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
-    }                                                                                                                                   // Szyfrowanie hasła
+    }
 
     @Bean
-    public AuthenticationManager authorizationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {       // AuthenticationManager jest potrzebny do autoryzacji
+    public AuthenticationManager authorizationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable();                                                                              // Wyłączenie CORSA
-        http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());     // Dodanie CORSA mozemy to wyłączyć i ustawić CORS nad metodami, teraz jest dostęp do wszystkich metod z każdego adresu
-        http.authorizeRequests()                                                                            // Konfiguracja dostępu
-                .antMatchers("/auth/login").permitAll()                                         // Wszyscy mają dostęp
+        http.csrf().disable();
+        http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
+        http.authorizeRequests()
+                .antMatchers("/auth/login").permitAll()
                 .antMatchers("/auth/register").permitAll()
-                .anyRequest().authenticated();                                                              // Wszyscy muszą być zalogowani
-        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);                   // Dodanie filtra
+                .anyRequest().authenticated();
+        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }

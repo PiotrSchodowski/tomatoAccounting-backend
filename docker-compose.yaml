@@ -1,0 +1,39 @@
+version: "3"
+services:
+  backend:
+    build: ./tomatoAccounting-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - my-sql
+    networks:
+      - spring-mysql-network
+
+  frontend:
+    build: ./TomatoAccounting-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - spring-mysql-network
+
+  my-sql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: Niewiemjakiehaslo.!
+      MYSQL_DATABASE: garden2
+      MYSQL_USER: Piotr
+      MYSQL_PASSWORD: HasloDatabase
+    ports:
+      - "3307:3306"
+    volumes:
+      - dbstore:/var/lib/mysql
+    networks:
+      - spring-mysql-network
+
+networks:
+  spring-mysql-network:
+
+volumes:
+  dbstore:
