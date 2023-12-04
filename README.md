@@ -31,8 +31,10 @@ make folder tomatoAccounting when you want to run application locally, entry ins
 git clone https://github.com/PiotrSchodowski/tomatoAccounting-backend.git
 git clone https://github.com/PiotrSchodowski/tomatoAccounting-frontend.git
 ```
-entry inside backend folder, open terminal and run command:
+entry inside backend folder, copy docker-compose.yaml and paste to tomatoAccounting folder, run command:
 ```docker-compose-up```
+
+
 
 
 
